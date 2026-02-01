@@ -7,24 +7,28 @@ title: 11ty Boilerplate
 <h1>Yet Another 11ty <strong>Boilerplate</strong></h1>
 <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
 -->
-<h1 id="name">hello world</h1>
-<button onclick="buttonPress()">
-  Click me
-</button>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<div x-data="nameGenerator()" x-cloak>
+  <h1 x-text="name"></h1>
+  <button @click="pickNewName()">
+    Click me
+  </button>
+</div>
 <!--<img alt="pine" src="/images/pine.png" width="50" />-->
 
+
 <script>
-let name = "hello world";
 
-
-const names = ["George", "Thomas", "John", "James", "Andrew", "Martin", "William", "Zachary", "Millard", "Franklin"];
-
-const textElement = document.getElementById("name");
-
-function buttonPress() {
-
-    name = names[Math.floor(Math.random() * names.length)];
-    
-    textElement.innerHTML = name;
+function nameGenerator() {
+  return {
+    name: 'Click the button',
+    names: ["George", "Thomas", "John", "James", "Andrew", "Martin", "William", "Zachary", "Millard", "Franklin"],
+    pickNewName() {
+    this.name = this.names[Math.floor(Math.random() * this.names.length)];
+  }
+  };
+  
 }
 </script>
